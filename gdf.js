@@ -10,7 +10,7 @@ const hex2rgb = (hex) => [...Array(3).keys()].map(
 );
 
 const main = async (args) => {
-  const objects = await df(['--total', ...args]);
+  const objects = await df(args);
 
   const pieData = objects.map(
     (object) => {
