@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const crypto = require('crypto');
 const Pie = require('cli-pie');
 const df = require('@mendelgusmao/df');

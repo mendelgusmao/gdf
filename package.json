@@ -24,5 +24,8 @@
     "eslint": "^7.12.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1"
+  },
+  "bin": {
+    "gdf": "gdf.js"
   }
 }
