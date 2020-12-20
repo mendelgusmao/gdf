@@ -9,9 +9,7 @@ const hex2rgb = (hex) => [...Array(3).keys()].map(
   (i) => parseInt(hex.substring(2 * i, 2 * i + 2), 16),
 );
 
-const main = async (args) => {
-  const objects = await df(args);
-
+const renderPie = (objects) => {
   const pieData = objects.map(
     (object) => {
       if (object.mountpoint === '-') {
@@ -35,6 +33,21 @@ const main = async (args) => {
   });
 
   console.log(pie.toString());
+};
+
+const main = async (args) => {
+  try {
+    const objects = await df(args);
+
+    renderPie(objects);
+  } catch (e) {
+    const { all, command, exitCode } = e;
+
+    console.log("error:", all);
+    console.log("command:", command);
+
+    process.exit(exitCode);
+  }
 };
 
 (
