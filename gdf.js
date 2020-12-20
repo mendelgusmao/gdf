@@ -35,21 +35,17 @@ const renderPie = (objects) => {
   console.log(pie.toString());
 };
 
-const main = async (args) => {
-  try {
-    const objects = await df(args);
+const main = (args) => {
+  df(args)
+    .then(renderPie)
+    .catch((e) => {
+      const { all, command, exitCode } = e;
 
-    renderPie(objects);
-  } catch (e) {
-    const { all, command, exitCode } = e;
+      console.log("error:", all);
+      console.log("command:", command);
 
-    console.log("error:", all);
-    console.log("command:", command);
-
-    process.exit(exitCode);
-  }
+      process.exit(exitCode);
+    });
 };
 
-(
-  async () => main(process.argv.slice(2))
-)();
+main(process.argv.slice(2));
